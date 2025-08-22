@@ -6,7 +6,7 @@
     <title>Bishesh Sambahamphe | Macintosh Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Old Macintosh style variables */
+        /* Classic Macintosh color scheme */
         :root {
             --mac-beige: #f5f5dc;
             --mac-dark-beige: #e0d8b0;
@@ -19,6 +19,9 @@
             --mac-border: #808080;
             --mac-highlight: #ffffff;
             --mac-shadow: #404040;
+            --mac-window-bg: #c0c0c0;
+            --mac-menu-bg: #808080;
+            --mac-dialog-bg: #c0c0c0;
         }
         
         * {
@@ -29,7 +32,7 @@
         }
         
         body {
-            background-color: var(--mac-blue);
+            background-color: var(--mac-window-bg);
             background-image: 
                 repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 11px),
                 repeating-linear-gradient(-45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 11px);
@@ -53,9 +56,9 @@
             overflow: hidden;
         }
         
-        /* Menu bar */
+        /* Menu bar - Classic Mac style */
         .menu-bar {
-            background-color: var(--mac-beige);
+            background-color: var(--mac-menu-bg);
             height: 20px;
             border-bottom: 1px solid var(--mac-border);
             display: flex;
@@ -65,16 +68,19 @@
             font-size: 11px;
             position: relative;
             z-index: 100;
+            color: white;
         }
         
         .apple-menu {
             font-weight: bold;
             padding: 2px 8px;
+            color: white;
         }
         
         .menu-items span {
             margin: 0 5px;
             padding: 2px 8px;
+            color: white;
         }
         
         .menu-items span:hover {
@@ -97,6 +103,7 @@
             margin-bottom: 20px;
             cursor: pointer;
             font-size: 11px;
+            color: white;
         }
         
         .desktop-icon img {
@@ -104,6 +111,7 @@
             height: 32px;
             margin-bottom: 5px;
             image-rendering: pixelated;
+            filter: invert(1); /* Make icons white for better contrast */
         }
         
         .desktop-icon:hover {
@@ -111,10 +119,10 @@
             color: var(--mac-white);
         }
         
-        /* Window styling */
+        /* Window styling - Classic Mac appearance */
         .window {
             position: absolute;
-            background-color: var(--mac-beige);
+            background-color: var(--mac-window-bg);
             border: 2px solid;
             border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
             box-shadow: 2px 2px 0 var(--mac-black);
@@ -126,7 +134,7 @@
         }
         
         .window-header {
-            background: linear-gradient(90deg, var(--mac-dark-blue), var(--mac-blue));
+            background: linear-gradient(90deg, var(--mac-dark-gray), var(--mac-gray));
             color: var(--mac-white);
             padding: 3px 5px;
             display: flex;
@@ -144,7 +152,7 @@
             width: 16px;
             height: 14px;
             margin-left: 2px;
-            background-color: var(--mac-beige);
+            background-color: var(--mac-window-bg);
             border: 1px solid;
             border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
             text-align: center;
@@ -160,12 +168,32 @@
             flex-grow: 1;
             overflow-y: auto;
             font-size: 12px;
+            background-color: var(--mac-beige);
+            border: 1px solid;
+            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
+            margin: 2px;
         }
         
         /* Active window */
         .window.active {
             display: flex;
             z-index: 50;
+        }
+        
+        /* Classic Mac buttons */
+        .mac-button {
+            background-color: var(--mac-window-bg);
+            border: 2px solid;
+            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
+            padding: 3px 15px;
+            font-size: 12px;
+            cursor: pointer;
+            margin: 5px;
+            font-family: 'Chicago', 'MS Sans Serif', sans-serif;
+        }
+        
+        .mac-button:active {
+            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
         }
         
         /* Content styling */
@@ -230,6 +258,8 @@
             border: 1px solid var(--mac-border);
             padding: 10px;
             margin-bottom: 10px;
+            box-shadow: inset 1px 1px 0 var(--mac-highlight), 
+                        inset -1px -1px 0 var(--mac-shadow);
         }
         
         .date {
@@ -251,6 +281,8 @@
             padding: 2px 6px;
             border: 1px solid var(--mac-border);
             font-size: 10px;
+            box-shadow: inset 1px 1px 0 var(--mac-highlight), 
+                        inset -1px -1px 0 var(--mac-shadow);
         }
         
         .project-link {
@@ -267,7 +299,7 @@
         /* Dialog box */
         .dialog {
             position: absolute;
-            background-color: var(--mac-beige);
+            background-color: var(--mac-dialog-bg);
             border: 2px solid;
             border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
             padding: 10px;
@@ -275,6 +307,15 @@
             flex-direction: column;
             z-index: 100;
             min-width: 300px;
+            box-shadow: 2px 2px 0 var(--mac-black);
+        }
+        
+        .dialog-content {
+            background-color: var(--mac-beige);
+            padding: 10px;
+            border: 1px solid;
+            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
+            margin: 5px 0;
         }
         
         .dialog-buttons {
@@ -286,10 +327,11 @@
         
         .dialog-button {
             padding: 3px 15px;
-            background-color: var(--mac-beige);
+            background-color: var(--mac-window-bg);
             border: 2px solid;
             border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
             cursor: pointer;
+            font-family: 'Chicago', 'MS Sans Serif', sans-serif;
         }
         
         .dialog-button:active {
@@ -564,14 +606,15 @@
                         <li><strong>LinkedIn:</strong> Bishesh Sambahamphe</li>
                     </ul>
                 </div>
-                <button class="dialog-button" onclick="showDialog()">Send Message</button>
             </div>
         </div>
         
         <!-- Dialog Box -->
         <div id="messageDialog" class="dialog" style="top: 200px; left: 300px;">
             <h2>Send Message</h2>
-            <p>This feature would connect to a backend service in a real application.</p>
+            <div class="dialog-content">
+                <p>This feature would connect to a backend service in a real application.</p>
+            </div>
             <div class="dialog-buttons">
                 <button class="dialog-button" onclick="closeDialog()">Cancel</button>
                 <button class="dialog-button" onclick="sendMessage()">OK</button>
