@@ -38,23 +38,10 @@
                 repeating-linear-gradient(-45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 11px);
             color: var(--mac-black);
             line-height: 1.4;
-            overflow: hidden;
+            overflow-x: hidden;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
             user-select: none;
-        }
-        
-        /* Desktop container */
-        .desktop {
-            background-color: var(--mac-blue);
-            border: 2px solid var(--mac-border);
-            box-shadow: inset 1px 1px 0 var(--mac-highlight), 
-                        inset -1px -1px 0 var(--mac-shadow),
-                        4px 4px 10px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            height: calc(100vh - 40px);
-            position: relative;
-            overflow: hidden;
         }
         
         /* Menu bar - Classic Mac style */
@@ -67,8 +54,11 @@
             align-items: center;
             padding: 0 10px;
             font-size: 11px;
-            position: relative;
-            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             color: white;
         }
         
@@ -91,285 +81,176 @@
             color: var(--mac-white);
         }
         
-        /* Desktop icons */
-        .desktop-icons {
-            position: absolute;
-            top: 30px;
-            left: 10px;
-            z-index: 1;
+        /* Main content container */
+        .content-container {
+            max-width: 900px;
+            margin: 30px auto 50px;
+            padding: 20px;
+            margin-top: 40px;
         }
         
-        .desktop-icon {
-            width: 60px;
-            text-align: center;
-            margin-bottom: 20px;
-            cursor: pointer;
-            font-size: 11px;
-            color: white;
-            transition: all 0.2s ease;
-        }
-        
-        .desktop-icon img {
-            width: 32px;
-            height: 32px;
-            margin-bottom: 5px;
-            image-rendering: pixelated;
-            filter: invert(1); /* Make icons white for better contrast */
-        }
-        
-        .desktop-icon:hover {
-            background-color: var(--mac-dark-blue);
-            color: var(--mac-white);
-            transform: translateY(-2px);
-        }
-        
-        /* Window styling - Classic Mac appearance */
-        .window {
-            position: absolute;
+        /* Section styling */
+        .section {
             background-color: var(--mac-window-bg);
             border: 2px solid;
             border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
             box-shadow: 2px 2px 0 var(--mac-black);
-            min-width: 400px;
-            min-height: 300px;
-            display: none;
-            flex-direction: column;
-            z-index: 10;
-            transition: all 0.2s ease;
+            margin-bottom: 30px;
+            padding: 0;
+            transition: all 0.3s ease;
         }
         
-        .window-header {
+        .section-header {
             background: linear-gradient(90deg, var(--mac-dark-gray), var(--mac-gray));
             color: var(--mac-white);
-            padding: 3px 5px;
+            padding: 5px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 13px;
             font-weight: bold;
-            cursor: move;
-        }
-        
-        .window-controls {
-            display: flex;
-        }
-        
-        .window-control {
-            width: 16px;
-            height: 14px;
-            margin-left: 2px;
-            background-color: var(--mac-window-bg);
-            border: 1px solid;
-            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
-            text-align: center;
-            line-height: 12px;
-            font-size: 11px;
-            font-weight: bold;
-            color: var(--mac-black);
             cursor: pointer;
-            transition: all 0.1s ease;
         }
         
-        .window-control:hover {
-            background-color: var(--mac-dark-beige);
-        }
-        
-        .window-control:active {
-            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
-        }
-        
-        .window-content {
-            padding: 10px;
-            flex-grow: 1;
-            overflow-y: auto;
-            font-size: 12px;
+        .section-content {
+            padding: 15px;
             background-color: var(--mac-beige);
             border: 1px solid;
             border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
-            margin: 2px;
-        }
-        
-        /* Active window */
-        .window.active {
-            display: flex;
-            z-index: 50;
-            animation: windowOpen 0.3s ease;
-        }
-        
-        @keyframes windowOpen {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        /* Minimized window state */
-        .window.minimized {
             display: none;
-        }
-        
-        /* Taskbar for minimized windows */
-        .taskbar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30px;
-            background-color: var(--mac-menu-bg);
-            border-top: 1px solid var(--mac-border);
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            gap: 5px;
-            z-index: 90;
-        }
-        
-        .taskbar-item {
-            background-color: var(--mac-window-bg);
-            border: 1px solid;
-            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
-            padding: 3px 10px;
-            font-size: 11px;
-            cursor: pointer;
-            white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 150px;
         }
         
-        .taskbar-item:hover {
-            background-color: var(--mac-dark-beige);
+        .section.active .section-content {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
         
-        .taskbar-item:active {
-            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
-        }
-        
-        .taskbar-spacer {
-            flex-grow: 1;
-        }
-        
-        /* Classic Mac buttons */
-        .mac-button {
-            background-color: var(--mac-window-bg);
-            border: 2px solid;
-            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
-            padding: 3px 15px;
-            font-size: 12px;
-            cursor: pointer;
-            margin: 5px;
-            font-family: 'Chicago', 'MS Sans Serif', sans-serif;
-            transition: all 0.1s ease;
-        }
-        
-        .mac-button:hover {
-            background-color: var(--mac-dark-beige);
-        }
-        
-        .mac-button:active {
-            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
+        @keyframes fadeIn {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 2000px; }
         }
         
         /* Content styling */
         h1 {
-            font-size: 18px;
+            font-size: 24px;
             margin-bottom: 15px;
             text-align: center;
+            color: var(--mac-dark-blue);
         }
         
         h2 {
-            font-size: 14px;
-            margin: 10px 0;
+            font-size: 18px;
+            margin: 15px 0 10px;
             border-bottom: 1px solid var(--mac-border);
-            padding-bottom: 3px;
+            padding-bottom: 5px;
+            color: var(--mac-dark-blue);
+        }
+        
+        h3 {
+            font-size: 16px;
+            margin: 10px 0;
+            color: var(--mac-dark-gray);
         }
         
         p {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
         }
         
         ul {
             list-style-type: none;
             padding-left: 20px;
+            margin-bottom: 15px;
         }
         
         ul li {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             position: relative;
+            font-size: 14px;
         }
         
         ul li:before {
             content: "•";
             position: absolute;
             left: -15px;
+            color: var(--mac-dark-blue);
         }
         
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin: 10px 0;
+            gap: 15px;
+            margin: 15px 0;
         }
         
         .contact-info a {
             color: var(--mac-dark-blue);
             text-decoration: none;
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .contact-info a:hover {
             text-decoration: underline;
             color: var(--mac-blue);
+            transform: translateY(-2px);
         }
         
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 15px 0;
+            gap: 20px;
+            margin: 20px 0;
         }
         
         .info-card {
             background-color: var(--mac-white);
             border: 1px solid var(--mac-border);
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
             box-shadow: inset 1px 1px 0 var(--mac-highlight), 
                         inset -1px -1px 0 var(--mac-shadow);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
         
         .info-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px);
             box-shadow: inset 1px 1px 0 var(--mac-highlight), 
                         inset -1px -1px 0 var(--mac-shadow),
-                        0 4px 8px rgba(0,0,0,0.1);
+                        0 5px 15px rgba(0,0,0,0.1);
         }
         
         .date {
             color: var(--mac-dark-gray);
             font-style: italic;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             display: block;
+            font-size: 13px;
         }
         
         .tech-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 8px;
             margin: 10px 0;
         }
         
         .tech-tag {
             background-color: var(--mac-dark-beige);
-            padding: 2px 6px;
+            padding: 4px 10px;
             border: 1px solid var(--mac-border);
-            font-size: 10px;
+            font-size: 11px;
             box-shadow: inset 1px 1px 0 var(--mac-highlight), 
                         inset -1px -1px 0 var(--mac-shadow);
             transition: all 0.2s ease;
         }
         
         .tech-tag:hover {
-            transform: translateY(-1px);
+            transform: translateY(-2px);
             background-color: var(--mac-beige);
         }
         
@@ -377,89 +258,81 @@
             color: var(--mac-dark-blue);
             text-decoration: none;
             display: inline-block;
-            margin-top: 5px;
-            transition: all 0.2s ease;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
         
         .project-link:hover {
             text-decoration: underline;
             color: var(--mac-blue);
-            transform: translateX(3px);
+            transform: translateX(5px);
         }
         
-        /* Dialog box */
-        .dialog {
-            position: absolute;
-            background-color: var(--mac-dialog-bg);
-            border: 2px solid;
-            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            z-index: 100;
-            min-width: 300px;
-            box-shadow: 2px 2px 0 var(--mac-black);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .dialog-content {
-            background-color: var(--mac-beige);
-            padding: 10px;
-            border: 1px solid;
-            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
-            margin: 5px 0;
-        }
-        
-        .dialog-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .dialog-button {
-            padding: 3px 15px;
+        /* Mac buttons */
+        .mac-button {
             background-color: var(--mac-window-bg);
             border: 2px solid;
             border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
+            padding: 5px 20px;
+            font-size: 13px;
             cursor: pointer;
+            margin: 10px 0;
             font-family: 'Chicago', 'MS Sans Serif', sans-serif;
+            transition: all 0.2s ease;
+            display: inline-block;
         }
         
-        .dialog-button:active {
+        .mac-button:hover {
+            background-color: var(--mac-dark-beige);
+            transform: translateY(-2px);
+        }
+        
+        .mac-button:active {
             border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
         }
         
         /* Footer */
         footer {
-            position: absolute;
-            bottom: 35px;
-            left: 0;
-            right: 0;
             text-align: center;
-            font-size: 11px;
+            font-size: 12px;
             color: var(--mac-white);
+            background-color: var(--mac-menu-bg);
+            padding: 10px;
+            border-top: 1px solid var(--mac-border);
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
         
         /* Easter egg elements */
         .easter-egg {
-            position: absolute;
+            position: fixed;
             z-index: 5;
             cursor: pointer;
             transition: all 0.5s ease;
+            font-size: 24px;
+            opacity: 0.7;
+        }
+        
+        .easter-egg:hover {
+            opacity: 1;
+            transform: scale(1.2);
         }
         
         /* Responsive design */
         @media (max-width: 768px) {
-            .window {
-                min-width: 300px;
-                min-height: 250px;
-            }
-            
             .grid-2 {
                 grid-template-columns: 1fr;
+            }
+            
+            .content-container {
+                padding: 10px;
+                margin-top: 30px;
+            }
+            
+            .menu-items {
+                display: none;
             }
         }
         
@@ -471,74 +344,71 @@
             font-style: normal;
         }
         
-        /* Cursor styles */
-        body, .desktop-icon, .menu-items span, .window-control, .mac-button {
-            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='black'/%3E%3Ccircle cx='8' cy='8' r='5' fill='white'/%3E%3C/svg%3E"), auto;
+        /* Scroll animations */
+        @keyframes popIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
         
-        /* Animation for desktop icons */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        .animate-pop {
+            animation: popIn 0.5s ease forwards;
         }
         
-        .desktop-icon:nth-child(1) {
-            animation: bounce 3s ease-in-out 1s infinite;
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--mac-menu-bg);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: 2px solid;
+            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
         }
         
-        .desktop-icon:nth-child(2) {
-            animation: bounce 3s ease-in-out 2s infinite;
+        .scroll-top.visible {
+            opacity: 1;
         }
         
-        .desktop-icon:nth-child(3) {
-            animation: bounce 3s ease-in-out 3s infinite;
+        .scroll-top:hover {
+            background-color: var(--mac-dark-blue);
         }
     </style>
 </head>
 <body>
-    <div class="desktop">
-        <!-- Menu Bar -->
-        <div class="menu-bar">
-            <div class="apple-menu" onclick="showAboutDialog()"></div>
-            <div class="menu-items">
-                <span onclick="openWindow('about')">About Me</span>
-                <span onclick="openWindow('skills')">Skills</span>
-                <span onclick="openWindow('projects')">Projects</span>
-                <span onclick="openWindow('experience')">Experience</span>
-                <span onclick="openWindow('education')">Education</span>
-                <span onclick="openWindow('contact')">Contact</span>
-                <span onclick="showFunDialog()">Fun!</span>
-            </div>
-            <div class="menu-time" id="menu-time">4:00 PM</div>
+    <!-- Menu Bar -->
+    <div class="menu-bar">
+        <div class="apple-menu" onclick="scrollToTop()"></div>
+        <div class="menu-items">
+            <span onclick="scrollToSection('about')">About Me</span>
+            <span onclick="scrollToSection('skills')">Skills</span>
+            <span onclick="scrollToSection('projects')">Projects</span>
+            <span onclick="scrollToSection('experience')">Experience</span>
+            <span onclick="scrollToSection('education')">Education</span>
+            <span onclick="scrollToSection('contact')">Contact</span>
+            <span onclick="showFunDialog()">Fun!</span>
         </div>
-        
-        <!-- Desktop Icons -->
-        <div class="desktop-icons">
-            <div class="desktop-icon" onclick="openWindow('about')">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE2IDNDOC44IDMgMyA4LjggMyAxNnM1LjggMTMgMTMgMTMgMTMtNS44IDEzLTEzUzIzLjIgMyAxNiAzem0wIDI0Yy01LjUgMC0xMC00LjUtMTAtMTBzNC41LTEwIDEwLTEwIDEwIDQuNSAxMCAxMC00LjUgMTAtMTAgMTB6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE4IDEzeC00Yy0uNiAwLTEgLjQtMSAxdjEwYzAgLjYuNCAxIDEgMWg0Yy42IDAgMS0uNCAxLTFWMTRjMC0uNi0uNC0xLTEtMXptMC02aC00Yy0uNiAwLTEgLjQtMSAxdjJjMCAuNi40IDEgMSAxaDRjLjYgMCAxLS40IDEtMXYtMmMwLS42LS40LTEtMS0xeiIvPjwvc3ZnPg==" alt="About">
-                About Me
-            </div>
-            <div class="desktop-icon" onclick="openWindow('projects')">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI4IDRIMTBjLS42IDAtMSAuNC0xIDF2Mmg0djFIMTBjLS42IDAtMSAuNC0xIDF2Mmg0djFIMTBjLS42IDAtMSAuNC0xIDF2Mmg0djFIMTBjLS42IDAtMSAuNC0xIDF2Mmg0djFIMTBjLS42IDAtMSAuNC0xIDF2MmgxOGMwLTEuMS0uOS0yLTItMlY2YzAtMS4xLjktMiAyLTJ6Ii8+PC9zdmc+" alt="Projects">
-                Projects
-            </div>
-            <div class="desktop-icon" onclick="openWindow('contact')">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI4IDZINEMyLjkgNiAyIDYuOSAyIDh2MTZjMCAxLjEuOSAyIDIgMmg0YzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJoNGMxLjEgMCAyLS45IDItMlY4YzAtMS4xLS45LTItMi0yem0wIDJ2My41bC04IDUuNC04LTUuNFY4aDE2ek00IDI0VjguN2wxMC4xIDYuOGMuMy4yLjcuMi45IDBMMjUgOC43VjI0SDR6Ii8+PC9zdmc+" alt="Contact">
-                Contact
-            </div>
-        </div>
-        
-        <!-- Windows -->
-        <div id="about" class="window" style="top: 100px; left: 150px; width: 500px; height: 400px;">
-            <div class="window-header">
+        <div class="menu-time" id="menu-time">4:00 PM</div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content-container">
+        <!-- About Section -->
+        <div class="section active" id="about-section">
+            <div class="section-header" onclick="toggleSection('about-section')">
                 <span>About Bishesh Sambahamphe</span>
-                <div class="window-controls">
-                    <div class="window-control" onclick="minimizeWindow('about')">—</div>
-                    <div class="window-control" onclick="maximizeWindow('about')">□</div>
-                    <div class="window-control" onclick="closeWindow('about')">×</div>
-                </div>
+                <span>▼</span>
             </div>
-            <div class="window-content">
+            <div class="section-content">
                 <h1>BISHESH SAMBAHAMFHE</h1>
                 <p><strong>FULL-STACK DEVELOPER & AI/ML ENTHUSIAST</strong></p>
                 
@@ -560,16 +430,13 @@
             </div>
         </div>
         
-        <div id="skills" class="window" style="top: 120px; left: 200px; width: 450px; height: 350px;">
-            <div class="window-header">
+        <!-- Skills Section -->
+        <div class="section" id="skills-section">
+            <div class="section-header" onclick="toggleSection('skills-section')">
                 <span>Skills & Technologies</span>
-                <div class="window-controls">
-                    <div class="window-control" onclick="minimizeWindow('skills')">—</div>
-                    <div class="window-control" onclick="maximizeWindow('skills')">□</div>
-                    <div class="window-control" onclick="closeWindow('skills')">×</div>
-                </div>
+                <span>▼</span>
             </div>
-            <div class="window-content">
+            <div class="section-content">
                 <h2>Technical Skills</h2>
                 
                 <div class="grid-2">
@@ -604,16 +471,13 @@
             </div>
         </div>
         
-        <div id="projects" class="window" style="top: 80px; left: 180px; width: 520px; height: 450px;">
-            <div class="window-header">
+        <!-- Projects Section -->
+        <div class="section" id="projects-section">
+            <div class="section-header" onclick="toggleSection('projects-section')">
                 <span>Project Showcase</span>
-                <div class="window-controls">
-                    <div class="window-control" onclick="minimizeWindow('projects')">—</div>
-                    <div class="window-control" onclick="maximizeWindow('projects')">□</div>
-                    <div class="window-control" onclick="closeWindow('projects')">×</div>
-                </div>
+                <span>▼</span>
             </div>
-            <div class="window-content">
+            <div class="section-content">
                 <div class="info-card">
                     <h3>Hotel Reservation System</h3>
                     <div class="tech-list">
@@ -650,16 +514,13 @@
             </div>
         </div>
         
-        <div id="experience" class="window" style="top: 150px; left: 220px; width: 480px; height: 320px;">
-            <div class="window-header">
+        <!-- Experience Section -->
+        <div class="section" id="experience-section">
+            <div class="section-header" onclick="toggleSection('experience-section')">
                 <span>Work Experience</span>
-                <div class="window-controls">
-                    <div class="window-control" onclick="minimizeWindow('experience')">—</div>
-                    <div class="window-control" onclick="maximizeWindow('experience')">□</div>
-                    <div class="window-control" onclick="closeWindow('experience')">×</div>
-                </div>
+                <span>▼</span>
             </div>
-            <div class="window-content">
+            <div class="section-content">
                 <div class="info-card">
                     <h3>CloudFactory</h3>
                     <span class="date">2023 - Present | Data Annotation/Quality Assurance Specialist</span>
@@ -677,16 +538,13 @@
             </div>
         </div>
         
-        <div id="education" class="window" style="top: 100px; left: 250px; width: 500px; height: 380px;">
-            <div class="window-header">
+        <!-- Education Section -->
+        <div class="section" id="education-section">
+            <div class="section-header" onclick="toggleSection('education-section')">
                 <span>Education</span>
-                <div class="window-controls">
-                    <div class="window-control" onclick="minimizeWindow('education')">—</div>
-                    <div class="window-control" onclick="maximizeWindow('education')">□</div>
-                    <div class="window-control" onclick="closeWindow('education')">×</div>
-                </div>
+                <span>▼</span>
             </div>
-            <div class="window-content">
+            <div class="section-content">
                 <div class="grid-2">
                     <div class="info-card">
                         <h3>Kathmandu Valley College</h3>
@@ -716,16 +574,13 @@
             </div>
         </div>
         
-        <div id="contact" class="window" style="top: 130px; left: 200px; width: 400px; height: 300px;">
-            <div class="window-header">
+        <!-- Contact Section -->
+        <div class="section" id="contact-section">
+            <div class="section-header" onclick="toggleSection('contact-section')">
                 <span>Contact Me</span>
-                <div class="window-controls">
-                    <div class="window-control" onclick="minimizeWindow('contact')">—</div>
-                    <div class="window-control" onclick="maximizeWindow('contact')">□</div>
-                    <div class="window-control" onclick="closeWindow('contact')">×</div>
-                </div>
+                <span>▼</span>
             </div>
-            <div class="window-content">
+            <div class="section-content">
                 <h2>Get in Touch</h2>
                 <div class="info-card">
                     <p>Feel free to reach out to me for collaboration or opportunities:</p>
@@ -742,180 +597,126 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Taskbar -->
-        <div class="taskbar" id="taskbar">
-            <div class="taskbar-spacer"></div>
-            <!-- Taskbar items will be added here by JavaScript -->
-        </div>
-        
-        <footer>
-            <p>© 2025 BISHESH SAMBAHAMFHE | Portfolio</p>
-        </footer>
-        
-        <!-- Easter Egg Elements -->
-        <div class="easter-egg" style="top: 200px; left: 600px; font-size: 24px;" onclick="moveEasterEgg(this)">👾</div>
-        <div class="easter-egg" style="top: 300px; left: 800px; font-size: 24px;" onclick="moveEasterEgg(this)">💻</div>
-        <div class="easter-egg" style="top: 400px; left: 700px; font-size: 24px;" onclick="moveEasterEgg(this)">🚀</div>
     </div>
+    
+    <!-- Scroll to top button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        ↑
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 BISHESH SAMBAHAMFHE | Portfolio</p>
+    </footer>
+    
+    <!-- Easter Egg Elements -->
+    <div class="easter-egg" style="top: 200px; left: 90%; font-size: 24px;" onclick="moveEasterEgg(this)">👾</div>
+    <div class="easter-egg" style="top: 300px; left: 10%; font-size: 24px;" onclick="moveEasterEgg(this)">💻</div>
+    <div class="easter-egg" style="top: 80%; left: 80%; font-size: 24px;" onclick="moveEasterEgg(this)">🚀</div>
 
     <!-- Dialog Boxes -->
     <div id="messageDialog" class="dialog">
-        <div class="window-header">
+        <div class="section-header">
             <span>Send Message</span>
-            <div class="window-controls">
-                <div class="window-control" onclick="closeDialog()">×</div>
-            </div>
+            <span onclick="closeDialog()">×</span>
         </div>
-        <div class="dialog-content">
+        <div class="section-content">
             <p>This would open a contact form in a real implementation.</p>
             <p>For now, you can email me at <strong>bisheshs255@gmail.com</strong></p>
         </div>
-        <div class="dialog-buttons">
-            <div class="dialog-button" onclick="closeDialog()">Cancel</div>
-            <div class="dialog-button" onclick="sendMessage()">Send</div>
+        <div style="padding: 10px; text-align: right; background: var(--mac-window-bg);">
+            <div class="mac-button" onclick="closeDialog()">Cancel</div>
+            <div class="mac-button" onclick="sendMessage()">Send</div>
         </div>
     </div>
     
     <div id="aboutDialog" class="dialog">
-        <div class="window-header">
+        <div class="section-header">
             <span>About This Portfolio</span>
-            <div class="window-controls">
-                <div class="window-control" onclick="closeDialog()">×</div>
-            </div>
+            <span onclick="closeDialog()">×</span>
         </div>
-        <div class="dialog-content">
+        <div class="section-content">
             <p>This portfolio was created with a Classic Macintosh UI theme for a fun, nostalgic experience.</p>
-            <p>Try dragging the windows around, minimizing them, and checking out the taskbar!</p>
+            <p>Try clicking on the section headers to expand/collapse them!</p>
         </div>
-        <div class="dialog-buttons">
-            <div class="dialog-button" onclick="closeDialog()">OK</div>
+        <div style="padding: 10px; text-align: right; background: var(--mac-window-bg);">
+            <div class="mac-button" onclick="closeDialog()">OK</div>
         </div>
     </div>
     
     <div id="funDialog" class="dialog">
-        <div class="window-header">
+        <div class="section-header">
             <span>Fun Zone!</span>
-            <div class="window-controls">
-                <div class="window-control" onclick="closeDialog()">×</div>
-            </div>
+            <span onclick="closeDialog()">×</span>
         </div>
-        <div class="dialog-content">
+        <div class="section-content">
             <p>You found the fun button! 🎉</p>
             <p>Did you know? The first Macintosh was introduced in 1984 with a 9-inch monochrome display!</p>
             <p>Try clicking on the floating emojis around the screen!</p>
         </div>
-        <div class="dialog-buttons">
-            <div class="dialog-button" onclick="closeDialog()">Cool!</div>
+        <div style="padding: 10px; text-align: right; background: var(--mac-window-bg);">
+            <div class="mac-button" onclick="closeDialog()">Cool!</div>
         </div>
     </div>
 
     <script>
-        // Track minimized windows
-        const minimizedWindows = new Map();
-        let zIndexCounter = 10;
-        
-        // Function to open windows
-        function openWindow(windowId) {
-            // Close any open dialogs first
-            closeDialog();
+        // Toggle section content
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('active');
             
-            // If window is minimized, restore it
-            if (minimizedWindows.has(windowId)) {
-                restoreWindow(windowId);
-                return;
-            }
-            
-            // Bring window to front
-            document.querySelectorAll('.window').forEach(window => {
-                window.classList.remove('active');
-                window.style.zIndex = '10';
-            });
-            
-            const window = document.getElementById(windowId);
-            window.classList.add('active');
-            window.style.zIndex = (zIndexCounter += 10).toString();
-        }
-        
-        // Function to close windows
-        function closeWindow(windowId) {
-            const window = document.getElementById(windowId);
-            window.classList.remove('active');
-            window.classList.remove('minimized');
-            
-            // Remove from taskbar if minimized
-            if (minimizedWindows.has(windowId)) {
-                const taskbarItem = minimizedWindows.get(windowId);
-                taskbarItem.remove();
-                minimizedWindows.delete(windowId);
+            // Scroll to section if opening
+            if (section.classList.contains('active')) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
         
-        // Function to minimize windows
-        function minimizeWindow(windowId) {
-            const window = document.getElementById(windowId);
-            window.classList.remove('active');
-            window.classList.add('minimized');
-            
-            // Add to taskbar
-            addToTaskbar(windowId);
-        }
-        
-        // Function to restore minimized windows
-        function restoreWindow(windowId) {
-            const window = document.getElementById(windowId);
-            window.classList.remove('minimized');
-            window.classList.add('active');
-            window.style.zIndex = (zIndexCounter += 10).toString();
-            
-            // Remove from taskbar
-            if (minimizedWindows.has(windowId)) {
-                const taskbarItem = minimizedWindows.get(windowId);
-                taskbarItem.remove();
-                minimizedWindows.delete(windowId);
+        // Scroll to specific section
+        function scrollToSection(sectionName) {
+            const section = document.getElementById(sectionName + '-section');
+            if (!section.classList.contains('active')) {
+                section.classList.add('active');
             }
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         
-        // Function to add window to taskbar
-        function addToTaskbar(windowId) {
-            const window = document.getElementById(windowId);
-            const title = window.querySelector('.window-header span').textContent;
-            
-            const taskbarItem = document.createElement('div');
-            taskbarItem.className = 'taskbar-item';
-            taskbarItem.textContent = title;
-            taskbarItem.onclick = () => restoreWindow(windowId);
-            
-            const taskbar = document.getElementById('taskbar');
-            taskbar.insertBefore(taskbarItem, taskbar.querySelector('.taskbar-spacer'));
-            
-            minimizedWindows.set(windowId, taskbarItem);
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-        // Function to maximize windows
-        function maximizeWindow(windowId) {
-            const window = document.getElementById(windowId);
-            if (window.style.width === '90%') {
-                window.style.width = '500px';
-                window.style.height = '400px';
-                window.style.top = '100px';
-                window.style.left = '150px';
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
             } else {
-                window.style.width = '90%';
-                window.style.height = '80%';
-                window.style.top = '50px';
-                window.style.left = '5%';
+                scrollTop.classList.remove('visible');
             }
-        }
+            
+            // Add animation to elements when they come into view
+            document.querySelectorAll('.info-card').forEach(card => {
+                const position = card.getBoundingClientRect();
+                if (position.top < window.innerHeight - 50) {
+                    card.classList.add('animate-pop');
+                }
+            });
+        });
         
         // Dialog functions
         function showDialog(dialogId) {
-            // Close any open dialogs first
-            closeDialog();
-            
             const dialog = document.getElementById(dialogId);
-            dialog.style.display = 'flex';
-            dialog.style.zIndex = (zIndexCounter += 10).toString();
+            dialog.style.display = 'block';
+            dialog.style.position = 'fixed';
+            dialog.style.top = '50%';
+            dialog.style.left = '50%';
+            dialog.style.transform = 'translate(-50%, -50%)';
+            dialog.style.zIndex = '1001';
+            dialog.style.width = '300px';
+            dialog.style.backgroundColor = 'var(--mac-window-bg)';
+            dialog.style.border = '2px solid';
+            dialog.style.borderColor = 'var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight)';
+            dialog.style.boxShadow = '2px 2px 0 var(--mac-black)';
         }
         
         function showMessageDialog() {
@@ -941,39 +742,6 @@
             closeDialog();
         }
         
-        // Make windows draggable
-        let activeWindow = null;
-        let offsetX, offsetY;
-
-        document.querySelectorAll('.window-header').forEach(header => {
-            header.addEventListener('mousedown', startDrag);
-        });
-
-        function startDrag(e) {
-            activeWindow = this.parentElement;
-            offsetX = e.clientX - parseInt(activeWindow.style.left || 0);
-            offsetY = e.clientY - parseInt(activeWindow.style.top || 0);
-            
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('mouseup', stopDrag);
-            
-            // Bring to front
-            activeWindow.style.zIndex = (zIndexCounter += 10).toString();
-        }
-
-        function drag(e) {
-            if (!activeWindow) return;
-            
-            activeWindow.style.left = (e.clientX - offsetX) + 'px';
-            activeWindow.style.top = (e.clientY - offsetY) + 'px';
-        }
-
-        function stopDrag() {
-            document.removeEventListener('mousemove', drag);
-            document.removeEventListener('mouseup', stopDrag);
-            activeWindow = null;
-        }
-        
         // Easter egg interaction
         function moveEasterEgg(element) {
             const x = Math.random() * (window.innerWidth - 50);
@@ -984,7 +752,14 @@
             
             // Play sound if available
             try {
-                const audio = new Audio('data:audio/wav;base64,UklGRl4QAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YToQAACBgIF/gn6BfYF8gXqBeIF2gXSBcoFwgW6BbYFsgWqBaYFogWaBZYFkgWKBYYFggV+BXoFdgVyBW4FagVmBWIFXgVaBVYFUgVOBUoFRgVCBT4FOgU2BTIFLgUqBSYFIgUeBRoFGgUWBRIFDgUKBQYFAgT+BPoE9gTyBO4E6gTmBOIE3gTaBNYE0gTOBMoExgTCBL4EugS2BLIErgSqBKYEogSeBJoEmgSWBJIEjgSKBIYEggR+BHoEdgRyBG4EagRmBGIEXgRaBFYEUgROBEoERgRCBD4EOgQ2BDIELgQqBCYEIgQeBBoEGgQWBBYEEgQOBAoEBgQCBP4E+gT2BPIE7gTqBOYE4gTeBNoE1gTSBM4EygTGBMIEvgS6BLYEsgSuBKoEpgSiBJ4EmgSaBJYElgSSBJIEjgSKBIYEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSC极简版：由于代码长度限制，我无法提供完整的base64音频数据。在实际应用中，您可以使用简短的音频效果。
+                // Simple beep sound using Web Audio API
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.connect(audioContext.destination);
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.1);
             } catch (e) {
                 console.log('Audio not supported');
             }
@@ -1006,19 +781,17 @@
         setInterval(updateClock, 60000);
         updateClock();
         
-        // Open about window on load
+        // Initialize with about section open
         window.onload = function() {
-            openWindow('about');
-            
             // Add some fun elements after a delay
             setTimeout(() => {
-                const funButton = document.createElement('div');
-                funButton.className = 'desktop-icon';
-                funButton.innerHTML = '<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE2IDRDNi44IDQgMiA4LjggMiAxOGMwIDkuMiA0LjggMTQgMTQgMTQgOS4yIDAgMTQtNC44IDE0LTE0QzMwIDguOCAyNS4yIDQgMTYgNHoiLz48cGF0aCBmaWxsPSIjMDAwIiBkPSJNMTAgMTJoMTJ2OEgxMHoiLz48L3N2Zz4=" alt="Fun"><span>Fun!</span>';
-                funButton.onclick = showFunDialog;
-                funButton.style.left = '80px';
-                funButton.style.top = '200px';
-                document.querySelector('.desktop-icons').appendChild(funButton);
+                const funElement = document.createElement('div');
+                funElement.className = 'easter-egg';
+                funElement.innerHTML = '⭐';
+                funElement.style.top = Math.random() * 80 + 10 + '%';
+                funElement.style.left = Math.random() * 80 + 10 + '%';
+                funElement.onclick = function() { moveEasterEgg(this); };
+                document.body.appendChild(funElement);
             }, 3000);
         };
     </script>
