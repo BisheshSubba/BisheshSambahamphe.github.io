@@ -3,797 +3,473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bishesh Sambahamphe | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Bishesh's Retro Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <style>
-        /* Classic Macintosh color scheme */
         :root {
-            --mac-beige: #f5f5dc;
-            --mac-dark-beige: #e0d8b0;
-            --mac-blue: #2a56fc;
-            --mac-dark-blue: #1a3cc0;
-            --mac-gray: #808080;
-            --mac-dark-gray: #404040;
-            --mac-black: #000000;
-            --mac-white: #ffffff;
-            --mac-border: #808080;
-            --mac-highlight: #ffffff;
-            --mac-shadow: #404040;
-            --mac-window-bg: #c0c0c0;
-            --mac-menu-bg: #808080;
-            --mac-dialog-bg: #c0c0c0;
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --accent: #ffd166;
+            --dark: #1a535c;
+            --light: #f7fff7;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Chicago', 'MS Sans Serif', sans-serif;
         }
         
         body {
-            background-color: var(--mac-window-bg);
+            font-family: 'Courier New', monospace;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
             background-image: 
-                repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 11px),
-                repeating-linear-gradient(-45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 11px);
-            color: var(--mac-black);
-            line-height: 1.4;
-            overflow-x: hidden;
-            min-height: 100vh;
-            padding: 0;
-            user-select: none;
+                radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.1) 1px, transparent 0),
+                radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+            background-size: 20px 20px, 10px 10px;
+            background-position: 0 0, 10px 10px;
         }
         
-        /* Menu bar - Classic Mac style */
-        .menu-bar {
-            background-color: var(--mac-menu-bg);
-            height: 20px;
-            border-bottom: 1px solid var(--mac-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px;
-            font-size: 11px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            color: white;
-        }
-        
-        .apple-menu {
-            font-weight: bold;
-            padding: 2px 8px;
-            color: white;
-            cursor: pointer;
-        }
-        
-        .menu-items span {
-            margin: 0 5px;
-            padding: 2px 8px;
-            color: white;
-            cursor: pointer;
-        }
-        
-        .menu-items span:hover {
-            background-color: var(--mac-dark-blue);
-            color: var(--mac-white);
-        }
-        
-        /* Main content container */
-        .content-container {
-            max-width: 900px;
-            margin: 30px auto 50px;
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
             padding: 20px;
-            margin-top: 40px;
         }
         
-        /* Section styling */
-        .section {
-            background-color: var(--mac-window-bg);
-            border: 2px solid;
-            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
-            box-shadow: 2px 2px 0 var(--mac-black);
-            margin-bottom: 30px;
-            padding: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .section-header {
-            background: linear-gradient(90deg, var(--mac-dark-gray), var(--mac-gray));
-            color: var(--mac-white);
-            padding: 5px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .section-content {
-            padding: 15px;
-            background-color: var(--mac-beige);
-            border: 1px solid;
-            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
-            display: none;
-            overflow: hidden;
-        }
-        
-        .section.active .section-content {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; max-height: 0; }
-            to { opacity: 1; max-height: 2000px; }
-        }
-        
-        /* Content styling */
-        h1 {
-            font-size: 24px;
-            margin-bottom: 15px;
+        header {
             text-align: center;
-            color: var(--mac-dark-blue);
+            padding: 30px 0;
+            position: relative;
+            border-bottom: 4px dashed var(--primary);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 var(--accent);
+            letter-spacing: 1px;
         }
         
         h2 {
-            font-size: 18px;
-            margin: 15px 0 10px;
-            border-bottom: 1px solid var(--mac-border);
+            font-family: 'Press Start 2P', cursive;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+            border-bottom: 2px dotted var(--secondary);
             padding-bottom: 5px;
-            color: var(--mac-dark-blue);
         }
         
         h3 {
-            font-size: 16px;
-            margin: 10px 0;
-            color: var(--mac-dark-gray);
-        }
-        
-        p {
-            margin-bottom: 15px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        ul {
-            list-style-type: none;
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        ul li {
-            margin-bottom: 8px;
-            position: relative;
-            font-size: 14px;
-        }
-        
-        ul li:before {
-            content: "•";
-            position: absolute;
-            left: -15px;
-            color: var(--mac-dark-blue);
+            font-family: 'Press Start 2P', cursive;
+            color: var(--dark);
+            font-size: 1rem;
+            margin: 15px 0 5px;
         }
         
         .contact-info {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
             margin: 15px 0;
         }
         
         .contact-info a {
-            color: var(--mac-dark-blue);
+            color: var(--dark);
             text-decoration: none;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            background-color: rgba(78, 205, 196, 0.2);
+            border-radius: 5px;
         }
         
         .contact-info a:hover {
-            text-decoration: underline;
-            color: var(--mac-blue);
-            transform: translateY(-2px);
+            background-color: var(--secondary);
+            color: var(--light);
+            transform: translateY(-3px);
         }
         
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .pixel-divider {
+            height: 20px;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    var(--primary),
+                    var(--primary) 5px,
+                    var(--accent) 5px,
+                    var(--accent) 10px
+                );
             margin: 20px 0;
+            border-radius: 3px;
         }
         
-        .info-card {
-            background-color: var(--mac-white);
-            border: 1px solid var(--mac-border);
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: inset 1px 1px 0 var(--mac-highlight), 
-                        inset -1px -1px 0 var(--mac-shadow);
-            transition: all 0.3s ease;
+        .profile-section, .education-section, .skills-section, 
+        .certifications-section, .experience-section, .projects-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 3px solid var(--dark);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 5px 5px 0 var(--accent);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .info-card:hover {
+        .profile-section:hover, .education-section:hover, .skills-section:hover, 
+        .certifications-section:hover, .experience-section:hover, .projects-section:hover {
             transform: translateY(-5px);
-            box-shadow: inset 1px 1px 0 var(--mac-highlight), 
-                        inset -1px -1px 0 var(--mac-shadow),
-                        0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 8px 8px 0 var(--accent);
         }
         
-        .date {
-            color: var(--mac-dark-gray);
-            font-style: italic;
-            margin-bottom: 8px;
-            display: block;
-            font-size: 13px;
+        .education-item, .certification-item, .experience-item, .project-item {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 3px solid var(--secondary);
         }
         
-        .tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 10px 0;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
         }
         
-        .tech-tag {
-            background-color: var(--mac-dark-beige);
-            padding: 4px 10px;
-            border: 1px solid var(--mac-border);
-            font-size: 11px;
-            box-shadow: inset 1px 1px 0 var(--mac-highlight), 
-                        inset -1px -1px 0 var(--mac-shadow);
-            transition: all 0.2s ease;
+        .skill-category {
+            background-color: rgba(255, 107, 107, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
         }
         
-        .tech-tag:hover {
-            transform: translateY(-2px);
-            background-color: var(--mac-beige);
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
         
-        .project-link {
-            color: var(--mac-dark-blue);
+        .project-item {
+            background-color: rgba(255, 209, 102, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid var(--accent);
+            transition: transform 0.3s;
+        }
+        
+        .project-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .project-item a {
+            color: var(--dark);
             text-decoration: none;
+            font-weight: bold;
             display: inline-block;
             margin-top: 10px;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            padding: 5px 10px;
+            background-color: var(--secondary);
+            border-radius: 5px;
+            transition: all 0.3s;
         }
         
-        .project-link:hover {
-            text-decoration: underline;
-            color: var(--mac-blue);
-            transform: translateX(5px);
+        .project-item a:hover {
+            background-color: var(--primary);
+            color: var(--light);
         }
         
-        /* Mac buttons */
-        .mac-button {
-            background-color: var(--mac-window-bg);
-            border: 2px solid;
-            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
-            padding: 5px 20px;
-            font-size: 13px;
+        .pixel-button {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            padding: 8px 15px;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            margin: 10px 0;
-            font-family: 'Chicago', 'MS Sans Serif', sans-serif;
-            transition: all 0.2s ease;
-            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 3px 3px 0 var(--dark);
         }
         
-        .mac-button:hover {
-            background-color: var(--mac-dark-beige);
-            transform: translateY(-2px);
+        .pixel-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 5px 5px 0 var(--dark);
         }
         
-        .mac-button:active {
-            border-color: var(--mac-shadow) var(--mac-highlight) var(--mac-highlight) var(--mac-shadow);
+        .pixel-button:active {
+            transform: translateY(0);
+            box-shadow: 2px 2px 0 var(--dark);
         }
         
-        /* Footer */
         footer {
             text-align: center;
-            font-size: 12px;
-            color: var(--mac-white);
-            background-color: var(--mac-menu-bg);
-            padding: 10px;
-            border-top: 1px solid var(--mac-border);
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 4px dashed var(--primary);
+            font-size: 0.9rem;
         }
         
-        /* Easter egg elements */
-        .easter-egg {
-            position: fixed;
-            z-index: 5;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            font-size: 24px;
-            opacity: 0.7;
-        }
-        
-        .easter-egg:hover {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        
-        /* Responsive design */
         @media (max-width: 768px) {
-            .grid-2 {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            .skills-grid, .projects-grid {
                 grid-template-columns: 1fr;
             }
             
-            .content-container {
-                padding: 10px;
-                margin-top: 30px;
-            }
-            
-            .menu-items {
-                display: none;
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
             }
         }
         
-        /* Chicago font simulation */
-        @font-face {
-            font-family: 'Chicago';
-            src: local('Chicago'), url('https://fonts.cdnfonts.com/css/chicago-2');
-            font-weight: normal;
-            font-style: normal;
+        /* Pixel art decorations */
+        .pixel-art {
+            image-rendering: pixelated;
         }
         
-        /* Scroll animations */
-        @keyframes popIn {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        .pixel-corners {
+            position: relative;
         }
         
-        .animate-pop {
-            animation: popIn 0.5s ease forwards;
+        .pixel-corners::before, .pixel-corners::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
         }
         
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--mac-menu-bg);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        .pixel-corners::before {
+            top: -5px;
+            left: -5px;
+        }
+        
+        .pixel-corners::after {
+            bottom: -5px;
+            right: -5px;
+        }
+        
+        /* Animation for sections */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-section {
+            animation: fadeIn 0.5s ease-out forwards;
             opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 100;
-            border: 2px solid;
-            border-color: var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight);
         }
         
-        .scroll-top.visible {
-            opacity: 1;
-        }
-        
-        .scroll-top:hover {
-            background-color: var(--mac-dark-blue);
-        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
-    <!-- Menu Bar -->
-    <div class="menu-bar">
-        <div class="apple-menu" onclick="scrollToTop()"></div>
-        <div class="menu-items">
-            <span onclick="scrollToSection('about')">About Me</span>
-            <span onclick="scrollToSection('skills')">Skills</span>
-            <span onclick="scrollToSection('projects')">Projects</span>
-            <span onclick="scrollToSection('experience')">Experience</span>
-            <span onclick="scrollToSection('education')">Education</span>
-            <span onclick="scrollToSection('contact')">Contact</span>
-            <span onclick="showFunDialog()">Fun!</span>
-        </div>
-        <div class="menu-time" id="menu-time">4:00 PM</div>
-    </div>
-    
-    <!-- Main Content -->
-    <div class="content-container">
-        <!-- About Section -->
-        <div class="section active" id="about-section">
-            <div class="section-header" onclick="toggleSection('about-section')">
-                <span>About Bishesh Sambahamphe</span>
-                <span>▼</span>
+    <div class="container">
+        <header>
+            <h1>BISHESH SAMBAHAMPHÉ</h1>
+            <div class="contact-info">
+                <a href="tel:+9779810120935">📞 +977 9810120935</a>
+                <a href="mailto:bisheshs255@gmail.com">✉️ bisheshs255@gmail.com</a>
+                <a href="https://github.com/BisheshSubba" target="_blank">🔗 GitHub</a>
+                <a href="https://linkedin.com/in/bishesh-sambahamphe-aaa842216" target="_blank">🔗 LinkedIn</a>
             </div>
-            <div class="section-content">
-                <h1>BISHESH SAMBAHAMFHE</h1>
-                <p><strong>FULL-STACK DEVELOPER & AI/ML ENTHUSIAST</strong></p>
-                
-                <div class="info-card">
-                    <p>I'm a full-stack developer and aspiring AI/ML engineer with hands-on experience in Laravel, Django, PostgreSQL, and MySQL. I specialize in building scalable web applications, RESTful APIs, and implementing AI-powered recommendation systems.</p>
-                </div>
-                
-                <h2>Contact Information</h2>
-                <div class="contact-info">
-                    <a href="tel:+9779810120935"><i class="fas fa-phone"></i> +977 9810120935</a>
-                    <a href="mailto:bisheshs255@gmail.com"><i class="fas fa-envelope"></i> bisheshs255@gmail.com</a>
-                    <a href="https://github.com/BisheshSubba" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://linkedin.com/in/bishesh-sambahamphe-aaa842216" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                </div>
-                
-                <div class="mac-button" onclick="showFunDialog()">
-                    Click for a surprise!
-                </div>
-            </div>
-        </div>
+        </header>
         
-        <!-- Skills Section -->
-        <div class="section" id="skills-section">
-            <div class="section-header" onclick="toggleSection('skills-section')">
-                <span>Skills & Technologies</span>
-                <span>▼</span>
+        <section class="profile-section animate-section">
+            <h2>PLAYER PROFILE</h2>
+            <p>Full-stack developer and aspiring AI/ML engineer with hands-on experience in Laravel, Django, PostgreSQL, and MySQL. Skilled in building scalable web applications, RESTful APIs, and implementing AI-powered recommendation systems using collaborative filtering, content-based filtering, and cosine similarity algorithms. Experienced in machine learning data annotation and quality assurance. Currently pursuing a Bachelor's in Information Management, blending technical expertise with business understanding to deliver efficient, real-world software solutions.</p>
+        </section>
+        
+        <div class="pixel-divider"></div>
+        
+        <section class="education-section animate-section delay-1">
+            <h2>EDUCATION QUEST LOG</h2>
+            
+            <div class="education-item">
+                <h3>Kathmandu Valley College, Chhauni, Kathmandu</h3>
+                <p><strong>Ten Plus Two (+2) in Computer Science</strong> (2019 – 2021)</p>
+                <p>GPA: 3.33</p>
+                <p>Relevant Coursework: Programming Languages, Basic Hardware Knowledge, Software Development Concepts.</p>
             </div>
-            <div class="section-content">
-                <h2>Technical Skills</h2>
-                
-                <div class="grid-2">
-                    <div class="info-card">
-                        <h3>Programming & Frameworks</h3>
-                        <ul>
-                            <li>PHP (Laravel) - RESTful APIs, MVC, Blade</li>
-                            <li>Python (Django) - Web apps, ORM, Templates</li>
-                            <li>JavaScript (ES6+), HTML5, CSS3</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>Databases & Tools</h3>
-                        <ul>
-                            <li>MySQL - Design, optimization, procedures</li>
-                            <li>PostgreSQL - Advanced queries, indexing</li>
-                            <li>Git, Docker, Render, Figma</li>
-                        </ul>
-                    </div>
+            
+            <div class="education-item">
+                <h3>Prime College, Khusibu, Kathmandu</h3>
+                <p><strong>Bachelor of Information Management (BIM)</strong> (2021 – Present, expected graduation: 2026)</p>
+                <p>Academic Achievement: Ranked in the top 2% of the batch.</p>
+                <p>Relevant Coursework: Foundation of Information Technology, Digital Logic, Object-Oriented Programming with Java, Web Technology, Data Structure and Algorithms, Database Management System, Software Design and Development, Programming with Python, Information Security, Artificial Intelligence, Business Information Systems</p>
+            </div>
+        </section>
+        
+        <section class="skills-section animate-section delay-2">
+            <h2>SKILLS INVENTORY</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages & Framework</h3>
+                    <ul>
+                        <li>PHP (Laravel) – RESTful API development, MVC architecture, Blade templating.</li>
+                        <li>Python (Django) – Scalable web apps, Django ORM, template engine</li>
+                        <li>JavaScript (ES6+), HTML5, CSS3 – Responsive and interactive web interfaces.</li>
+                    </ul>
                 </div>
                 
-                <h2>Specializations</h2>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <ul>
+                        <li>MySQL – Database design, query optimization, stored procedures.</li>
+                        <li>PostgreSQL – Advanced queries, indexing, relational modeling.</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Web Development & Monitoring</h3>
+                    <ul>
+                        <li>RESTful API Design – Building, integrating, and securing APIs.</li>
+                        <li>GA4 (Google Analytics 4) – Website traffic monitoring & event tracking</li>
+                        <li>Filtering & Pagination – Optimized queries for large datasets.</li>
+                        <li>Google Email Verification – Secure email authentication integration</li>
+                        <li>Hybrid Recommendation Systems – Collaborative + content-based filtering with cosine similarity</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>DevOps, Deployment & Tools</h3>
+                    <ul>
+                        <li>Git, GitHub, GitLab – Version control, branching strategies.</li>
+                        <li>Docker – Containerization for development and deployment.</li>
+                        <li>Render – Cloud deployment of web applications.</li>
+                        <li>Figma – UI/UX wireframing and design collaboration.</li>
+                        <li>Slack – Team communication and collaboration.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="certifications-section animate-section delay-3">
+            <h2>ACHIEVEMENTS UNLOCKED</h2>
+            
+            <div class="certification-item">
+                <h3>Graphic Designing – Mother's IT Institute (2019)</h3>
+                <p>Completed a 2–3 month training program covering basic to intermediate skills in graphic design, including tools like Photoshop, Illustrator, and layout fundamentals.</p>
+            </div>
+            
+            <div class="certification-item">
+                <h3>Project Management – HSYWE (2021)</h3>
+                <p>Participated in a 1-week workshop focused on the fundamentals of project planning, execution, and team coordination.</p>
+            </div>
+        </section>
+        
+        <section class="experience-section animate-section delay-4">
+            <h2>EXPERIENCE MODE</h2>
+            
+            <div class="experience-item">
+                <h3>CloudFactory – Data Annotation/Quality Assurance Specialist (2023 – Present)</h3>
                 <ul>
-                    <li>RESTful API Design & Integration</li>
-                    <li>AI-powered recommendation systems</li>
-                    <li>Collaborative & content-based filtering</li>
-                    <li>GA4 Analytics & Event Tracking</li>
-                    <li>Google Email Verification</li>
-                    <li>Cloud Deployment & Scaling</li>
+                    <li>Performed quality assurance on labeled datasets used in machine learning models, consistently achieving over 90% accuracy.</li>
+                    <li>Contributed to project-based tasks in a collaborative, feedback-driven environment focused on continuous improvement.</li>
                 </ul>
             </div>
-        </div>
+        </section>
         
-        <!-- Projects Section -->
-        <div class="section" id="projects-section">
-            <div class="section-header" onclick="toggleSection('projects-section')">
-                <span>Project Showcase</span>
-                <span>▼</span>
-            </div>
-            <div class="section-content">
-                <div class="info-card">
+        <section class="projects-section animate-section delay-5">
+            <h2>PROJECT ARCHIVES</h2>
+            
+            <div class="projects-grid">
+                <div class="project-item">
                     <h3>Hotel Reservation System</h3>
-                    <div class="tech-list">
-                        <span class="tech-tag">Laravel</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">AI Recommendations</span>
-                    </div>
-                    <p>Developed a full-featured hotel booking platform using MVC architecture with Laravel and Blade templating. Designed room categorization system with dynamic pricing. Integrated AI-powered recommendation system.</p>
-                    <a href="https://github.com/BisheshSubba/StarHotel" class="project-link" target="_blank">View Project on GitHub →</a>
+                    <p>Laravel, MySQL</p>
+                    <ul>
+                        <li>Developed a full-featured hotel booking platform using MVC architecture</li>
+                        <li>Designed room categorization system with dynamic pricing</li>
+                        <li>Integrated AI-powered recommendation system</li>
+                        <li>Built interactive admin dashboard with real-time analytics</li>
+                    </ul>
+                    <a href="https://github.com/BisheshSubba/StarHotel" target="_blank">View Project</a>
                 </div>
                 
-                <div class="info-card">
+                <div class="project-item">
                     <h3>Retail Management System</h3>
-                    <div class="tech-list">
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Inventory Management</span>
-                    </div>
-                    <p>Utilized Django ORM with PostgreSQL to handle complex data relationships. Engineered a complete retail solution with inventory control, sales tracking, and customer insights. Automated report generation.</p>
-                    <a href="https://github.com/BisheshSubba/retailproject" class="project-link" target="_blank">View Project on GitHub →</a>
+                    <p>Django, PostgreSQL</p>
+                    <ul>
+                        <li>Utilized Django ORM with PostgreSQL for complex data relationships</li>
+                        <li>Engineered complete retail solution with inventory control and sales tracking</li>
+                        <li>Automated generation of sales and inventory reports</li>
+                        <li>Integrated supplier management with automatic PO generation</li>
+                    </ul>
+                    <a href="https://github.com/BisheshSubba/retailproject" target="_blank">View Project</a>
                 </div>
                 
-                <div class="info-card">
+                <div class="project-item">
                     <h3>MeroBazar Marketplace</h3>
-                    <div class="tech-list">
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Hybrid Recommendation</span>
-                        <span class="tech-tag">Khalti Payment</span>
-                    </div>
-                    <p>Built a feature-rich online marketplace supporting product listing, search, and purchase workflows. Implemented Hybrid Recommendation System combining collaborative and content-based filtering. Integrated Khalti Payment Gateway and Google Email Verification.</p>
-                    <a href="https://github.com/BisheshSubba/merobazar" class="project-link" target="_blank">View Project on GitHub →</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Experience Section -->
-        <div class="section" id="experience-section">
-            <div class="section-header" onclick="toggleSection('experience-section')">
-                <span>Work Experience</span>
-                <span>▼</span>
-            </div>
-            <div class="section-content">
-                <div class="info-card">
-                    <h3>CloudFactory</h3>
-                    <span class="date">2023 - Present | Data Annotation/Quality Assurance Specialist</span>
+                    <p>Django, PostgreSQL</p>
                     <ul>
-                        <li>Performed quality assurance on labeled datasets used in machine learning models, consistently achieving over 90% accuracy.</li>
-                        <li>Contributed to project-based tasks in a collaborative, feedback-driven environment focused on continuous improvement.</li>
+                        <li>Built feature-rich online marketplace</li>
+                        <li>Implemented Hybrid Recommendation System</li>
+                        <li>Integrated Khalti Payment Gateway</li>
+                        <li>Added Google Email Verification</li>
+                        <li>Deployed on Render with GA4 tracking</li>
                     </ul>
+                    <a href="https://github.com/BisheshSubba/merobazar" target="_blank">View Project</a>
                 </div>
-                
-                <h2>Certifications</h2>
-                <ul>
-                    <li><strong>Graphic Designing</strong> - Mother's IT Institute (2019)</li>
-                    <li><strong>Project Management</strong> - HSYWE (2021)</li>
-                </ul>
             </div>
-        </div>
+        </section>
         
-        <!-- Education Section -->
-        <div class="section" id="education-section">
-            <div class="section-header" onclick="toggleSection('education-section')">
-                <span>Education</span>
-                <span>▼</span>
-            </div>
-            <div class="section-content">
-                <div class="grid-2">
-                    <div class="info-card">
-                        <h3>Kathmandu Valley College</h3>
-                        <span class="date">2019 - 2021</span>
-                        <p>Ten Plus Two (+2) in Computer Science</p>
-                        <p><strong>GPA:</strong> 3.33</p>
-                        <ul>
-                            <li>Programming Languages</li>
-                            <li>Basic Hardware Knowledge</li>
-                            <li>Software Development Concepts</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>Prime College</h3>
-                        <span class="date">2021 - Present (Expected graduation: 2026)</span>
-                        <p>Bachelor of Information Management (BIM)</p>
-                        <p><strong>Academic Achievement:</strong> Ranked in the top 2% of the batch</p>
-                        <ul>
-                            <li>Object-Oriented Programming with Java</li>
-                            <li>Artificial Intelligence</li>
-                            <li>Database Management System</li>
-                            <li>Programming with Python</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Contact Section -->
-        <div class="section" id="contact-section">
-            <div class="section-header" onclick="toggleSection('contact-section')">
-                <span>Contact Me</span>
-                <span>▼</span>
-            </div>
-            <div class="section-content">
-                <h2>Get in Touch</h2>
-                <div class="info-card">
-                    <p>Feel free to reach out to me for collaboration or opportunities:</p>
-                    <ul>
-                        <li><strong>Phone:</strong> +977 9810120935</li>
-                        <li><strong>Email:</strong> bisheshs255@gmail.com</li>
-                        <li><strong>GitHub:</strong> BisheshSubba</li>
-                        <li><strong>LinkedIn:</strong> Bishesh Sambahamphe</li>
-                    </ul>
-                </div>
-                
-                <div class="mac-button" onclick="showMessageDialog()">
-                    Send Message
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Scroll to top button -->
-    <div class="scroll-top" onclick="scrollToTop()">
-        ↑
-    </div>
-    
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 BISHESH SAMBAHAMFHE | Portfolio</p>
-    </footer>
-    
-    <!-- Easter Egg Elements -->
-    <div class="easter-egg" style="top: 200px; left: 90%; font-size: 24px;" onclick="moveEasterEgg(this)">👾</div>
-    <div class="easter-egg" style="top: 300px; left: 10%; font-size: 24px;" onclick="moveEasterEgg(this)">💻</div>
-    <div class="easter-egg" style="top: 80%; left: 80%; font-size: 24px;" onclick="moveEasterEgg(this)">🚀</div>
-
-    <!-- Dialog Boxes -->
-    <div id="messageDialog" class="dialog">
-        <div class="section-header">
-            <span>Send Message</span>
-            <span onclick="closeDialog()">×</span>
-        </div>
-        <div class="section-content">
-            <p>This would open a contact form in a real implementation.</p>
-            <p>For now, you can email me at <strong>bisheshs255@gmail.com</strong></p>
-        </div>
-        <div style="padding: 10px; text-align: right; background: var(--mac-window-bg);">
-            <div class="mac-button" onclick="closeDialog()">Cancel</div>
-            <div class="mac-button" onclick="sendMessage()">Send</div>
-        </div>
-    </div>
-    
-    <div id="aboutDialog" class="dialog">
-        <div class="section-header">
-            <span>About This Portfolio</span>
-            <span onclick="closeDialog()">×</span>
-        </div>
-        <div class="section-content">
-            <p>This portfolio was created with a Classic Macintosh UI theme for a fun, nostalgic experience.</p>
-            <p>Try clicking on the section headers to expand/collapse them!</p>
-        </div>
-        <div style="padding: 10px; text-align: right; background: var(--mac-window-bg);">
-            <div class="mac-button" onclick="closeDialog()">OK</div>
-        </div>
-    </div>
-    
-    <div id="funDialog" class="dialog">
-        <div class="section-header">
-            <span>Fun Zone!</span>
-            <span onclick="closeDialog()">×</span>
-        </div>
-        <div class="section-content">
-            <p>You found the fun button! 🎉</p>
-            <p>Did you know? The first Macintosh was introduced in 1984 with a 9-inch monochrome display!</p>
-            <p>Try clicking on the floating emojis around the screen!</p>
-        </div>
-        <div style="padding: 10px; text-align: right; background: var(--mac-window-bg);">
-            <div class="mac-button" onclick="closeDialog()">Cool!</div>
-        </div>
+        <footer>
+            <p>© 2023 BISHESH SAMBAHAMPHÉ | LEVEL: PROFESSIONAL DEVELOPER</p>
+        </footer>
     </div>
 
     <script>
-        // Toggle section content
-        function toggleSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.classList.toggle('active');
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
             
-            // Scroll to section if opening
-            if (section.classList.contains('active')) {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-        
-        // Scroll to specific section
-        function scrollToSection(sectionName) {
-            const section = document.getElementById(sectionName + '-section');
-            if (!section.classList.contains('active')) {
-                section.classList.add('active');
-            }
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        
-        // Scroll to top
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            const scrollTop = document.querySelector('.scroll-top');
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
             
-            // Add animation to elements when they come into view
-            document.querySelectorAll('.info-card').forEach(card => {
-                const position = card.getBoundingClientRect();
-                if (position.top < window.innerHeight - 50) {
-                    card.classList.add('animate-pop');
-                }
+            document.querySelectorAll('.animate-section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Add button click effects
+            const buttons = document.querySelectorAll('.pixel-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                });
+            });
+            
+            // Add pixel art effect to section corners
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('pixel-corners');
             });
         });
-        
-        // Dialog functions
-        function showDialog(dialogId) {
-            const dialog = document.getElementById(dialogId);
-            dialog.style.display = 'block';
-            dialog.style.position = 'fixed';
-            dialog.style.top = '50%';
-            dialog.style.left = '50%';
-            dialog.style.transform = 'translate(-50%, -50%)';
-            dialog.style.zIndex = '1001';
-            dialog.style.width = '300px';
-            dialog.style.backgroundColor = 'var(--mac-window-bg)';
-            dialog.style.border = '2px solid';
-            dialog.style.borderColor = 'var(--mac-highlight) var(--mac-shadow) var(--mac-shadow) var(--mac-highlight)';
-            dialog.style.boxShadow = '2px 2px 0 var(--mac-black)';
-        }
-        
-        function showMessageDialog() {
-            showDialog('messageDialog');
-        }
-        
-        function showAboutDialog() {
-            showDialog('aboutDialog');
-        }
-        
-        function showFunDialog() {
-            showDialog('funDialog');
-        }
-        
-        function closeDialog() {
-            document.querySelectorAll('.dialog').forEach(dialog => {
-                dialog.style.display = 'none';
-            });
-        }
-        
-        function sendMessage() {
-            alert('Message sent! (This would connect to a backend in a real application)');
-            closeDialog();
-        }
-        
-        // Easter egg interaction
-        function moveEasterEgg(element) {
-            const x = Math.random() * (window.innerWidth - 50);
-            const y = Math.random() * (window.innerHeight - 50);
-            
-            element.style.left = x + 'px';
-            element.style.top = y + 'px';
-            
-            // Play sound if available
-            try {
-                // Simple beep sound using Web Audio API
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                oscillator.type = 'sine';
-                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-                oscillator.connect(audioContext.destination);
-                oscillator.start();
-                oscillator.stop(audioContext.currentTime + 0.1);
-            } catch (e) {
-                console.log('Audio not supported');
-            }
-        }
-        
-        // Update clock
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            
-            hours = hours % 12;
-            hours = hours ? hours : 12; // Convert 0 to 12
-            
-            document.getElementById('menu-time').textContent = `${hours}:${minutes} ${ampm}`;
-        }
-        
-        setInterval(updateClock, 60000);
-        updateClock();
-        
-        // Initialize with about section open
-        window.onload = function() {
-            // Add some fun elements after a delay
-            setTimeout(() => {
-                const funElement = document.createElement('div');
-                funElement.className = 'easter-egg';
-                funElement.innerHTML = '⭐';
-                funElement.style.top = Math.random() * 80 + 10 + '%';
-                funElement.style.left = Math.random() * 80 + 10 + '%';
-                funElement.onclick = function() { moveEasterEgg(this); };
-                document.body.appendChild(funElement);
-            }, 3000);
-        };
     </script>
 </body>
 </html>
